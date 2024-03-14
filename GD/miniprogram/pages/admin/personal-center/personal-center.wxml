@@ -1,0 +1,37 @@
+<view class="profile-container">
+  <van-cell-group inset>
+    <van-cell size="large" title="姓名" value="{{ name }}" />
+    <van-cell title="工号" value="{{ number }}" />
+  </van-cell-group>
+</view>
+<view class="setting-container">
+<van-cell-group inset >
+  <van-cell title="修改密码" value="点击跳转" title-style="font-size: 16px;" is-link class="setting-cell" clickalbe bindtap="goToChangePassword" />
+</van-cell-group>
+</view>
+<view class="setting-container">
+  <van-cell-group inset >
+    <van-cell title="新建比赛" value="点击跳转" title-style="font-size: 16px;" is-link clickalbe bindtap="goToAddContest" />
+  </van-cell-group>
+</view>
+<view class="setting-container">
+  <van-cell-group inset>
+    <van-cell title="查看比赛列表" value="点击跳转" title-style="font-size: 16px;" is-link clickalbe bindtap="goToContestList" />
+  </van-cell-group>
+</view>
+<view class="setting-container">
+  <van-cell-group inset>
+    <van-cell title="比赛倒计时" value="点击跳转" title-style="font-size: 16px;" is-link clickalbe bindtap="goToCountdown" />
+  </van-cell-group>
+</view>
+<view class="setting-container">
+  <van-cell-group inset>
+    <van-cell title="查看判罚记录" value="点击跳转" title-style="font-size: 16px;" is-link clickalbe bindtap="goToPenaltyRecord" />
+  </van-cell-group>
+</view>
+
+
+<van-tabbar active="{{ active }}" bind:change="onChange">
+  <van-tabbar-item icon="home-o">首页</van-tabbar-item>
+  <van-tabbar-item icon="setting-o">设置</van-tabbar-item>
+</van-tabbar>

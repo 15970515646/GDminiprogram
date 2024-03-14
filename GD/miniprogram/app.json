@@ -1,0 +1,38 @@
+{
+  "usingComponents": {
+    "van-search": "@vant/weapp/search/index",
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-panel": "@vant/weapp/panel/index",
+    "van-nav-bar": "@vant/weapp/nav-bar/index",
+    "van-datetime-picker": "@vant/weapp/datetime-picker/index",
+    "van-skeleton": "@vant/weapp/skeleton/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index"
+   
+  },
+  "pages": [
+    "pages/index/index",
+    "pages/contestant/index/index",
+    "pages/contestant/contest-detail/contest-detail",
+    "pages/admin/index/index",
+    "pages/admin/personal-center/personal-center",
+    "pages/admin/add-contest/add-contest",
+    "pages/admin/contest-list/contest-list"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "掼蛋编排计分",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents"
+}

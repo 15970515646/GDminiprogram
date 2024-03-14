@@ -1,0 +1,17 @@
+<view wx:for="{{contests}}" wx:key="index" wx:for-item="contest">
+
+  <view class="contest-container">
+    <van-cell-group inset>
+      <van-panel>
+        <view slot="header">
+          <van-cell title="{{contest.title}}" value="进行中" label="比赛时间:{{contest.date}}" title-class="cell-title" value-class="cell-value"></van-cell>
+        </view>
+        <view slot="footer" class="slot-footer">
+          <van-button type="info" size="small" bind:tap="joinContest" data-index="{{index}}">进入比赛</van-button>
+        </view>
+      </van-panel>
+    </van-cell-group>
+
+  </view>
+
+</view>

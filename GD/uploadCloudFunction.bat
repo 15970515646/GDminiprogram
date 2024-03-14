@@ -1,0 +1,1 @@
+"E:\Tencent\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-4ggo5ayef960540b --n quickstartFunctions --r --project "C:\Users\acer\Desktop\Wechat\GD" --report_first --report

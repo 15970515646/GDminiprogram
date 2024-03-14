@@ -1,0 +1,13 @@
+.contest-container{
+  margin-bottom: 20px;
+}
+.cell-title{
+  color: rgb(14, 111, 238);
+  font-size: 16px;
+}
+.slot-footer{
+  display: flex;
+  justify-content: center;
+}
+
+

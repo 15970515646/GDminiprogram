@@ -1,0 +1,13 @@
+<view class="background-container">
+  <view class="container">
+    <!-- 参赛选手入口 -->
+    <navigator url="/pages/contestant/index/index" class="entry">
+      <text class="entry-text">参赛选手入口</text>
+    </navigator>
+
+    <!-- 工作人员入口 -->
+    <navigator url="/pages/admin/index/index" class="entry">
+      <text class="entry-text">工作人员入口</text>
+    </navigator>
+  </view>
+</view>

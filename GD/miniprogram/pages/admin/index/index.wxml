@@ -1,0 +1,21 @@
+<view class="container">
+  <van-list>
+    <van-collapse wx:for="{{leaderboard}}" wx:key="index">
+      <van-collapse-item title="{{item.name + ' - ' + item.points + ' 分'}}">
+        <view slot="content">
+          <van-cell-group>
+            <van-cell title="姓名" value="{{item.name}}" />
+            <van-cell title="年龄" value="{{item.age}}" />
+            <van-cell title="性别" value="{{item.gender}}" />
+            <!-- 其他选手信息... -->
+          </van-cell-group>
+        </view>
+      </van-collapse-item>
+    </van-collapse>
+  </van-list>
+</view>
+
+<van-tabbar active="{{ active }}" bind:change="onChange">
+  <van-tabbar-item icon="home-o">首页</van-tabbar-item>
+  <van-tabbar-item icon="setting-o">设置</van-tabbar-item>
+</van-tabbar>

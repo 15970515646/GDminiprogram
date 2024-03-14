@@ -1,0 +1,10 @@
+.profile-container{
+  margin-bottom: 20px;
+}
+
+.setting-container{
+  margin-bottom: 20px;
+}
+.setting-cell{
+  background-color: aquamarine;
+}

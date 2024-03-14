@@ -1,0 +1,32 @@
+<view class="container">
+
+  <view class="input-container">
+    <van-field model:value="{{title}}" clearable required size="large" type="textarea" autosize label="比赛名称:" placeholder="请输入比赛名称" custom-style="font-weight: bold;"
+  class="custom-field" />
+  </view>
+  <view class="input-container">
+    <van-field model:value="{{number}}" clearable required size="large" label="比赛编号:" placeholder="请输入比赛编号" type="number" custom-style="font-weight: bold;"
+  class="custom-field"  />
+  </view>
+  <view class="input-container">
+    <van-field model:value="{{organizer}}" clearable required size="large" type="textarea" autosize label="举办方:" placeholder="请输入举办方" custom-style="font-weight: bold;"
+  class="custom-field"  />
+  </view>
+  <view class="input-container">
+    <van-field model:value="{{selectDate}}" clickable required disabled size="large" label="比赛时间:" type="date" placeholder="点击选择比赛时间" custom-style="font-weight: bold;"
+  class="custom-field" bind:tap="onShowPopup"  />
+
+  </view>
+
+
+  <view class="button">
+    <van-button type="primary" bind:tap="addContest">提交</van-button>
+  </view>
+</view>
+
+
+
+<van-popup show="{{showTimePicker}}" bind:close="onClosePopup" position="bottom" custom-style="height: 50%;" round>
+  <van-datetime-picker title="选择年月日" type="date" value="{{ currentDate }}" bind:confirm="onConfirm" bind:cancel="onCancel" min-date="{{ minDate }}" formatter="{{ formatter }}" />
+
+</van-popup>
