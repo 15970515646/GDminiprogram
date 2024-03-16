@@ -1,1 +1,42 @@
-/* pages/contestant/contest-detail/contest-detail.wxss */
+.show-title{
+  text-align: center;
+  font-size: 30px;
+  padding-bottom: 10%;
+  padding-left: 5%;
+  padding-right: 5%;
+  color: blue;
+  
+}
+.search-container {
+  background-color: #9bffa0;
+  
+}
+.slot-search {
+  background-color: #1890e0; /* 设置背景色 */
+  border-radius: 2px; /* 设置圆角 */
+  font-size: 16px; /* 设置字体大小 */
+  padding: 5px 25px; /* 设置内边距 */
+  color: #ffffff; /* 设置字体颜色 */
+  line-height: 24px; /* 设置按钮行高 */
+}
+.info-container{
+  background-color: #9bffa0;
+  padding-bottom: 10%;
+}
+.grid-text{
+  background-color: #9bffa0;
+}
+.grid-item-text{
+  background-color: #9bffa0;
+  font-style: inherit;
+}
+.leaderboard-button{
+  background-color: #9bffa0;
+  text-align: center;
+  padding-bottom: 10%;
+}
+.record-button{
+  background-color: #9bffa0;
+  text-align: center;
+  padding-bottom: 10%;
+}

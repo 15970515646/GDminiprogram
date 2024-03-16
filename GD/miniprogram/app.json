@@ -12,14 +12,16 @@
     "van-nav-bar": "@vant/weapp/nav-bar/index",
     "van-datetime-picker": "@vant/weapp/datetime-picker/index",
     "van-skeleton": "@vant/weapp/skeleton/index",
-    "van-row": "@vant/weapp/row/index",
-    "van-col": "@vant/weapp/col/index"
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index"
    
   },
   "pages": [
     "pages/index/index",
     "pages/contestant/index/index",
     "pages/contestant/contest-detail/contest-detail",
+    "pages/contestant/leaderboard/leaderboard",
+    "pages/contestant/records/records",
     "pages/admin/index/index",
     "pages/admin/personal-center/personal-center",
     "pages/admin/add-contest/add-contest",

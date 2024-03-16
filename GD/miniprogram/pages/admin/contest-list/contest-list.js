@@ -14,6 +14,17 @@ Page({
   onLoad(options) {
     this.queryContests(0);
   },
+  sortContestsByDate() {
+    let contests=this.data.contests;
+    contests.sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateB - dateA;
+    });
+    this.setData({
+      contests:contests,
+    });
+  },
   queryContests: function (skip) {
     const db = wx.cloud.database();
     const collection = db.collection('contest'); // 替换为实际的集合名称
@@ -37,7 +48,7 @@ Page({
           this.queryContests(skip + pageSize);
         } else {
           console.log('所有数据查询完毕');
-          console.log(this.data.contests[0].date);
+          this.sortContestsByDate();
         }
       },
       fail: (err) => {

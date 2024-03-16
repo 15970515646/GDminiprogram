@@ -1,0 +1,15 @@
+<van-cell-group inset>
+  <van-grid column-num="3">
+    <view >
+      <van-grid-item use-slot>
+        <text style="color: blue;">参赛编号</text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <text style="color: blue;">参赛编号</text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <text style="color: blue;">参赛编号</text>
+      </van-grid-item>
+    </view>
+  </van-grid>
+</van-cell-group>

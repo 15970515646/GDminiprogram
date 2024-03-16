@@ -1,0 +1,5 @@
+<van-grid column-num="2" >
+  <van-grid-item use-slot >
+    <text style="color: blue;">参赛编号</text>
+  </van-grid-item>
+</van-grid>

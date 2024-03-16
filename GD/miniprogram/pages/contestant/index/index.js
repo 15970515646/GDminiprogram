@@ -5,13 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    contests:[],
+    contests: [],
   },
-  joinContest(event){
+  joinContest(event) {
     const index = event.currentTarget.dataset.index;
     const contest = this.data.contests[index];
     wx.navigateTo({
-      url: '../contest-detail/contest-detail?contestNumber='+contest.number,
+      url: '../contest-detail/contest-detail?contestNumber=' + contest.number,
     });
   },
   /**
@@ -22,7 +22,17 @@ Page({
 
 
   },
-
+  sortContestsByDate() {
+    let contests=this.data.contests;
+    contests.sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateB - dateA;
+    });
+    this.setData({
+      contests:contests,
+    })
+  },
   queryContests: function (skip) {
     const db = wx.cloud.database();
     const collection = db.collection('contest'); // 替换为实际的集合名称
@@ -46,6 +56,7 @@ Page({
           this.queryContests(skip + pageSize);
         } else {
           console.log('所有数据查询完毕');
+          this.sortContestsByDate();
           console.log(this.data.contests);
         }
       },

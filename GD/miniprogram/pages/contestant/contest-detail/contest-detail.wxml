@@ -1,2 +1,45 @@
-<!--pages/contestant/contest-detail/contest-detail.wxml-->
-<text>pages/contestant/contest-detail/contest-detail.wxml</text>
+<view class="show-title">
+  <text>
+    {{contest.title}}
+  </text>
+</view>
+<view class="search-container">
+  <van-search input-align="center" label="您的姓名:" background="#9bffa0" placeholder="请输入您的名字" value="{{inputName}}" bind:search="onSearchContestant" bind:change="onInputChange" use-action-slot>
+    <view slot="action" bind:tap="onSearchContestant" class="slot-search">
+      搜索
+    </view>
+  </van-search>
+</view>
+<!-- <view wx:if="{{isContestant}}" class="info-container">
+  <van-cell-group inset>
+    <van-cell title="编号" value="姓名"></van-cell>
+    <van-cell title="{{contestant.number}}" value="{{contestant.name[0]}}"></van-cell>
+    <van-cell title="{{contestant.number}}" value="{{contestant.name[1]}}"></van-cell>
+  </van-cell-group>
+</view> -->
+<view wx:if="{{isContestant}}">
+  <view  class="info-container">
+    <van-grid column-num="2">
+      <van-grid-item use-slot>
+        <text style="color: blue;">参赛编号</text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <text style="color: blue;">姓名</text>
+      </van-grid-item>
+      <view wx:for="{{contestant.name}}" wx:key="index" wx:for-item="name">
+        <van-grid-item use-slot>
+          <text>{{contestant.number}}</text>
+        </van-grid-item>
+        <van-grid-item use-slot>
+          <text>{{name}}</text>
+        </van-grid-item>
+      </view>
+    </van-grid>
+  </view>
+  <view class="leaderboard-button">
+    <van-button type="info" size="large" bind:tap="goToLeaderboard">查看比赛排名</van-button>
+  </view>
+  <view class="record-button">
+    <van-button type="info" size="large" bind:tap="goToRecords">查看每轮比分</van-button>
+  </view>
+</view>
