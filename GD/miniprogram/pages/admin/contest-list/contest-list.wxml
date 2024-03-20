@@ -6,7 +6,7 @@
           <van-cell title="{{contest.number}}:{{contest.title}}" value="进行中" label="比赛时间:{{contest.date}}" title-class="cell-title" value-class="cell-value"></van-cell>
         </view>
         <view slot="footer" class="slot-footer">
-          <van-button type="info" size="small">查看详情</van-button>
+          <van-button type="info" size="small" data-index="{{index}}" bind:tap="goToContestDetail">查看详情</van-button>
         </view>
       </van-panel>
     </van-cell-group>

@@ -1,0 +1,50 @@
+<van-cell-group inset>
+  <van-cell title="参赛选手列表" value="共计{{contestants.length}}队"></van-cell>
+  <view wx:for="{{contestants}}" wx:key="index" wx:for-item="contestant">
+    <view class="info-container">
+      <van-swipe-cell right-width="{{ 100 }}">
+        <van-grid column-num="3">
+          <van-grid-item use-slot>
+            <text style="color: blue;">参赛编号</text>
+          </van-grid-item>
+          <van-grid-item use-slot>
+            <text style="color: blue;">姓名</text>
+          </van-grid-item>
+          <van-grid-item use-slot>
+            <text style="color: blue;">状态</text>
+          </van-grid-item>
+          <view wx:for="{{contestant.name}}" wx:key="index" wx:for-item="name">
+            <van-grid-item use-slot>
+              <text>{{contestant.number}}</text>
+            </van-grid-item>
+            <van-grid-item use-slot>
+              <text>{{name}}</text>
+            </van-grid-item>
+            <van-grid-item use-slot>
+              <text>{{contestant.status}}</text>
+            </van-grid-item>
+          </view>
+        </van-grid>
+        <view slot="right" >
+          <view class="button-container">
+            <button type="primary"   bind:tap="changeShowEdit" data-index="{{index}}">编辑</button>
+          </view>
+        </view>
+      </van-swipe-cell>
+
+      
+    </view>
+  </view>
+</van-cell-group>
+
+<van-popup show="{{showEdit}}" round position="bottom" custom-style="height: 35%" bind:close="closePopup" class="popup-container">
+  <view style="padding-bottom: 20px;padding-top: 20px;">
+    <van-field type="number" input-class="input-container" readonly value="第{{currentContestantNumber}}队" clearable input-align="center" bind:change="numberInput"></van-field>
+    <van-field value="{{playOne}}" readonly label="队员：" label-class="input-container" input-class="input-container" clearable input-align="right" bind:change="playOneInput"></van-field>
+    <van-field value="{{playTwo}}" readonly label="队员：" label-class="input-container" input-class="input-container" clearable input-align="right" bind:change="playTwoInput"></van-field>
+  </view>
+  <view class="button-container">
+    <van-button type="info" round bind:tap="deleteContestant">删除</van-button>
+    <van-button type="info" round bind:tap="closePopup">取消</van-button>
+  </view>
+</van-popup>

@@ -7,6 +7,14 @@ Page({
   data: {
     contests:[],
   },
+  goToContestDetail(event){
+    const index = event.currentTarget.dataset.index;
+    const contest=this.data.contests[index];
+    console.log(contest);
+    wx.navigateTo({
+      url: '../contest-detail/contest-detail?contestNumber='+contest.number,
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

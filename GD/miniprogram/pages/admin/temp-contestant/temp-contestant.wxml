@@ -1,0 +1,41 @@
+<van-cell-group inset>
+  <van-cell use-label-slot>
+    <view slot="title">
+      <text style="font-size:25px;color: black;">报名组数：</text>
+    </view>
+    <view slot="">
+      <text style="font-size:20px;color: black;">{{tempContestants.length}}组</text>
+    </view>
+  </van-cell>
+</van-cell-group>
+<view wx:for="{{tempContestants}}" wx:key="index" wx:for-item="tempContestant">
+  <view class="info-container">
+    <van-cell-group inset>
+      <van-grid column-num="3">
+        <van-grid-item use-slot>
+          <text style="color: blue;">报名编号</text>
+        </van-grid-item>
+        <van-grid-item use-slot>
+          <text style="color: blue;">姓名</text>
+        </van-grid-item>
+        <van-grid-item use-slot>
+          <text style="color: blue;">状态</text>
+        </van-grid-item>
+        <view wx:for="{{tempContestant.name}}" wx:key="index1" wx:for-item="name">
+          <van-grid-item use-slot>
+            <text>暂无</text>
+          </van-grid-item>
+          <van-grid-item use-slot>
+            <text>{{name}}</text>
+          </van-grid-item>
+          <van-grid-item use-slot>
+            <text>正常</text>
+          </van-grid-item>
+        </view>
+      </van-grid>
+    </van-cell-group>
+  </view>
+</view>
+<view class="button-container">
+  <button type="primary" bind:tap="saveFile">导出文件</button>
+</view>

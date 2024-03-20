@@ -1,1 +1,4 @@
-/* pages/contestant/leaderboard/leaderboard.wxss */
+.leaderboard-container{
+  padding-bottom: 10px;
+  /* background-color: #9bffa0; */
+}

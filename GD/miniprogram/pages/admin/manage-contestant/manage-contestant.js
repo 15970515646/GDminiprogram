@@ -1,40 +1,60 @@
-// pages/contestant/leaderboard/leaderboard.js
+// pages/admin/manage-contestant/manage-contestant.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    title: ["排名", "队名", "队员", "场分", "胜轮次", "级差分", "升级数", "对手级差分"],
     contestants: [],
-    contestNumber: null,
-    contestantNumber: null,
+    contestNumber: "",
+    showEdit: false,
+    playOne:"",
+    playTwo:"",
+    currentContestantNumber:"",
   },
-  changeShowDetail(event){
-    const index = event.currentTarget.dataset.index;
-    let contestants=this.data.contestants;
-    
-    if(contestants[index].showDetail===false){
-      console.log("111");
-      contestants[index].showDetail=true;
-    }
-    else{
-      console.log("222");
-      contestants[index].showDetail=false;
-    }
+  changeShowEdit(e) {
+    const index = e.currentTarget.dataset.index;
+    const contestant=this.data.contestants[index];
+    console.log(index);
     this.setData({
-      contestants:contestants
+      showEdit: true,
+      playOne:contestant.name[0],
+      playTwo:contestant.name[1],
+      currentContestantNumber:contestant.number
+    })
+  },
+  closePopup() {
+    this.setData({
+      showEdit: false,
+      playOne:"",
+      playTwo:"",
+      currentContestantNumber:""
+    })
+  },
+  playTwoInput(e){
+    this.setData({
+      playTwo:e.detail
     });
-    console.log(this.data.contestants);
+    console.log("playTwo:",this.data.playTwo);
+  },
+  playOneInput(e){
+    this.setData({
+      playOne:e.detail
+    });
+    console.log("playOne:",this.data.playOne);
+  },
+  numberInput(e){
+    this.setData({
+      currentContestantNumber:e.detail
+    });
+    console.log("number:",this.data.currentContestantNumber);
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(options);
     this.setData({
-      contestNumber: options.contestNumber,
-      contestantNumber: options.contestantNumber,
+      contestNumber: options.contestNumber
     });
     this.queryContestants(0);
   },
@@ -61,7 +81,6 @@ Page({
           this.queryContestants(skip + pageSize);
         } else {
           console.log('所有数据查询完毕');
-          console.log(this.data.contestants);
           this.filterContestants();
         }
       },
@@ -70,21 +89,23 @@ Page({
       }
     });
   },
-  filterContestants(){
+  filterContestants() {
     console.log("刷选");
-    const contestants=this.data.contestants;
-    let filteredContestants=[];
+    const contestants = this.data.contestants;
+    let filteredContestants = [];
     contestants.forEach(c => {
-      if(c.contest_number==this.data.contestNumber){
-        c.showDetail=false;
+      if (c.contest_number == this.data.contestNumber) {
+
         filteredContestants.push(c);
       }
     });
+    filteredContestants.sort((a, b) => a.number - b.number);
     this.setData({
-      contestants:filteredContestants
+      contestants: filteredContestants
     });
-    console.log("筛选后：",this.data.contestants);
+    console.log("筛选后：", this.data.contestants);
   },
+ 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

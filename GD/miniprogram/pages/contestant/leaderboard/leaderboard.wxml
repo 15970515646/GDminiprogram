@@ -1,5 +1,77 @@
-<van-grid column-num="2" >
-  <van-grid-item use-slot >
-    <text style="color: blue;">参赛编号</text>
-  </van-grid-item>
-</van-grid>
+<van-notice-bar color="#1989fa" background="#ecf9ff" left-icon="volume-o" scrollable text="点击对应队伍显示或者折叠具体积分情况" />
+<view wx:for="{{contestants}}" wx:key="index" wx:for-item="contestant" class="leaderboard-container">
+  <van-cell-group inset>
+    <van-cell use-label-slot data-index="{{index}}" clickable bind:tap="changeShowDetail">
+      <view slot="title">
+        <text style="font-size:25px;color: black;">第{{index+1}}名</text>
+      </view>
+      <view slot="">
+        <text style="font-size:20px;color: black;">{{contestant.name[0]}}/{{contestant.name[1]}}</text>
+      </view>
+      <view slot="label">
+        <text style="font-size:15px;color: black;">第{{contestant.number}}队</text>
+      </view>
+    </van-cell>
+    <view wx:if="{{contestant.showDetail}}">
+    <!--   <van-grid column-num="5">
+        <van-grid-item use-slot><text style="height: 40px;text-align: center;">场分</text></van-grid-item>
+        <van-grid-item use-slot><text style="height: 40px;text-align: center;">胜轮次</text></van-grid-item>
+        <van-grid-item use-slot><text style="height: 40px;text-align: center;">级差分</text></van-grid-item>
+        <van-grid-item use-slot><text style="height: 40px;text-align: center;">升级数</text></van-grid-item>
+        <van-grid-item use-slot><text style="height: 40px;text-align: center;">对手级差分</text></van-grid-item>
+      </van-grid>
+      <van-grid column-num="5">
+        <van-grid-item use-slot><text style="height: 10px;">{{contestant.total_points}}</text></van-grid-item>
+        <van-grid-item use-slot><text style="height: 10px;">{{contestant.win_round_points}}</text></van-grid-item>
+        <van-grid-item use-slot><text style="height: 10px;">{{contestant.level_different_points}}</text></van-grid-item>
+        <van-grid-item use-slot><text style="height: 10px;">{{contestant.promotion_points}}</text></van-grid-item>
+        <van-grid-item use-slot><text style="height: 10px;">{{contestant.opponent_level_different_points}}</text></van-grid-item>
+      </van-grid> -->
+
+
+      <!-- <van-row>
+        <van-col span="4">
+          <van-cell>
+            <view slot="title">
+              <text style="font-size: 12px;">场分</text>
+            </view>
+          </van-cell>
+        </van-col>
+        <van-col span="5">
+          <van-cell>
+            <view slot="title">
+              <text style="font-size: 12px;color: black;">胜轮次</text>
+            </view>
+          </van-cell>
+        </van-col>
+        <van-col span="5">
+          <van-cell>
+            <view slot="title">
+              <text style="font-size: 12px;color: black;">级差分</text>
+            </view>
+          </van-cell>
+        </van-col>
+        <van-col span="5">
+          <van-cell>
+            <view slot="title">
+              <text style="font-size: 12px;color: black;">升级数</text>
+            </view>
+          </van-cell>
+        </van-col>
+        <van-col span="5">
+          <van-cell>
+            <view slot="title">
+              <text style="font-size: 12px;">对手级差分</text>
+            </view>
+          </van-cell>
+        </van-col>
+      </van-row> -->
+
+      <van-cell title="场分" value="{{contestant.total_points}}"></van-cell>
+      <van-cell title="胜轮次" value="{{contestant.win_round_points}}"></van-cell>
+      <van-cell title="级差分" value="{{contestant.level_different_points}}"></van-cell>
+      <van-cell title="升级数" value="{{contestant.promotion_points}}"></van-cell>
+      <van-cell title="对手级差分" value="{{contestant.opponent_level_different_points}}"></van-cell>
+    </view>
+  </van-cell-group>
+</view>

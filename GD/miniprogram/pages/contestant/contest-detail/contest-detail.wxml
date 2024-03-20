@@ -3,43 +3,91 @@
     {{contest.title}}
   </text>
 </view>
-<view class="search-container">
-  <van-search input-align="center" label="您的姓名:" background="#9bffa0" placeholder="请输入您的名字" value="{{inputName}}" bind:search="onSearchContestant" bind:change="onInputChange" use-action-slot>
-    <view slot="action" bind:tap="onSearchContestant" class="slot-search">
-      搜索
-    </view>
-  </van-search>
-</view>
-<!-- <view wx:if="{{isContestant}}" class="info-container">
+<view wx:if="{{contestStarted}}">
   <van-cell-group inset>
-    <van-cell title="编号" value="姓名"></van-cell>
-    <van-cell title="{{contestant.number}}" value="{{contestant.name[0]}}"></van-cell>
-    <van-cell title="{{contestant.number}}" value="{{contestant.name[1]}}"></van-cell>
+    <view class="search-container">
+      <van-search input-align="center" label="您的姓名:" background="#9bffa0" placeholder="请输入您的名字" value="{{inputName}}" bind:search="onSearchContestant" bind:change="onInputChange" use-action-slot>
+        <view slot="action" bind:tap="onSearchContestant" class="slot-search">
+          搜索
+        </view>
+      </van-search>
+    </view>
   </van-cell-group>
-</view> -->
-<view wx:if="{{isContestant}}">
-  <view  class="info-container">
-    <van-grid column-num="2">
-      <van-grid-item use-slot>
-        <text style="color: blue;">参赛编号</text>
-      </van-grid-item>
-      <van-grid-item use-slot>
-        <text style="color: blue;">姓名</text>
-      </van-grid-item>
-      <view wx:for="{{contestant.name}}" wx:key="index" wx:for-item="name">
-        <van-grid-item use-slot>
-          <text>{{contestant.number}}</text>
-        </van-grid-item>
-        <van-grid-item use-slot>
-          <text>{{name}}</text>
-        </van-grid-item>
+  <view wx:if="{{isContestant}}">
+    <van-cell-group inset>
+      <view class="info-container">
+        <van-grid column-num="3">
+          <van-grid-item use-slot>
+            <text style="color: blue;">参赛编号</text>
+          </van-grid-item>
+          <van-grid-item use-slot>
+            <text style="color: blue;">姓名</text>
+          </van-grid-item>
+          <van-grid-item use-slot>
+            <text style="color: blue;">状态</text>
+          </van-grid-item>
+          <view wx:for="{{contestant.name}}" wx:key="index" wx:for-item="name">
+            <van-grid-item use-slot>
+              <text>{{contestant.number}}</text>
+            </van-grid-item>
+            <van-grid-item use-slot>
+              <text>{{name}}</text>
+            </van-grid-item>
+            <van-grid-item use-slot>
+              <text>{{contestant.status}}</text>
+            </van-grid-item>
+          </view>
+        </van-grid>
       </view>
-    </van-grid>
+      <view class="leaderboard-button">
+        <van-button type="info" size="large" bind:tap="goToLeaderboard">查看比赛排名</van-button>
+      </view>
+      <view class="record-button">
+        <van-button type="info" size="large" bind:tap="goToRecords">查看每轮比分</van-button>
+      </view>
+    </van-cell-group>
   </view>
-  <view class="leaderboard-button">
-    <van-button type="info" size="large" bind:tap="goToLeaderboard">查看比赛排名</van-button>
-  </view>
-  <view class="record-button">
-    <van-button type="info" size="large" bind:tap="goToRecords">查看每轮比分</van-button>
-  </view>
+</view>
+<view wx:else>
+  <van-notice-bar color="#1989fa" background="#ecf9ff" left-icon="volume-o" scrollable text="报名成功不代表参赛成功，具体参赛名单请关注官方参赛名单" />
+  <van-cell-group inset style="text-align: center;padding-bottom: 20px;">
+    <view style="text-align: center;padding-bottom: 10px;">
+      <van-button type="info" size="large" bind:tap="singleRegister">单人报名</van-button>
+      <van-button type="info" size="large" bind:tap="doubleRegister">双人报名</van-button>
+    </view>
+    <view wx:if="{{doubleShow}}" style="padding-bottom: 10px;">
+      <van-field mode:value="{{playOne}}" clearable placeholder="请输入队员1的名字" input-align="center" bind:change="playOneInput"></van-field>
+      <van-field mode:value="{{playTwo}}" clearable placeholder="请输入队员2的名字" input-align="center" bind:change="playTwoInput"></van-field>
+      <van-button type="info" size="large" bind:tap="doubleRegisterSubmit" >报名</van-button>
+
+    </view>
+    <view wx:if="{{singleShow}}" style="padding-bottom: 10px;">
+      <van-field mode:value="{{playOne}}" clearable placeholder="请输入您的名字" input-align="center" bind:change="playOneInput"></van-field>
+      <van-button type="info" size="large" bind:tap="singleRegisterSubmit" >报名</van-button>
+    </view>
+    <view wx:if="{{isTempContestant}}" class="info-container">
+      <van-grid column-num="3">
+        <van-grid-item use-slot>
+          <text style="color: blue;">报名编号</text>
+        </van-grid-item>
+        <van-grid-item use-slot>
+          <text style="color: blue;">姓名</text>
+        </van-grid-item>
+        <van-grid-item use-slot>
+          <text style="color: blue;">状态</text>
+        </van-grid-item>
+        <view wx:for="{{tempContestant.name}}" wx:key="index" wx:for-item="name">
+          <van-grid-item use-slot>
+            <text>暂无</text>
+          </van-grid-item>
+          <van-grid-item use-slot>
+            <text>{{name}}</text>
+          </van-grid-item>
+          <van-grid-item use-slot>
+            <text>暂无</text>
+          </van-grid-item>
+        </view>
+      </van-grid>
+    </view>
+  </van-cell-group>
 </view>

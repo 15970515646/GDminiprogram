@@ -1,0 +1,56 @@
+<view style="text-align: center;padding-top: 10px;padding-bottom: 20px;">
+  <van-button icon="add-o" type="primary" bind:tap="chooseFile">上传文件</van-button>
+</view>
+<view wx:if="{{showFileData}}">
+  <view wx:if="{{contestants.length>0}}">
+    <van-notice-bar color="#1989fa" background="#ecf9ff" left-icon="volume-o" scrollable text="预览如下，请仔细检查确认预览数据与您所上传的文件里面的数据是否一致，请谨慎导入" />
+  </view>
+
+  <view wx:for="{{contestants}}" wx:key="index" wx:for-item="contestant" style="padding-top: 10px;padding-bottom: 10px;">
+    <van-cell-group inset>
+      <van-cell use-label-slot data-index="{{index}}" clickable bind:tap="changeShowDetail">
+        <view slot="title">
+          <text style="font-size:25px;color: black;">第{{contestant.number}}队</text>
+        </view>
+        <view slot="">
+          <text style="font-size:20px;color: black;">{{contestant.name[0]}}/{{contestant.name[1]}}</text>
+        </view>
+        <!-- <view slot="label">
+        <text style="font-size:15px;color: black;">第{{contestant.number}}队</text>
+      </view> -->
+      </van-cell>
+      <van-cell title="场分" value="{{contestant.total_points}}"></van-cell>
+      <van-cell title="胜轮次" value="{{contestant.win_round_points}}"></van-cell>
+      <van-cell title="级差分" value="{{contestant.level_different_points}}"></van-cell>
+      <van-cell title="升级数" value="{{contestant.promotion_points}}"></van-cell>
+      <van-cell title="对手级差分" value="{{contestant.opponent_level_different_points}}"></van-cell>
+    </van-cell-group>
+  </view>
+  <view wx:if="{{canAddDB}}" style="text-align: center;">
+
+    <van-button type="primary" size="large" bind:tap="onSubmit">导入参赛选手</van-button>
+  </view>
+</view>
+<view wx:if="{{showRepeatedData}}">
+  <view wx:if="{{repeatedData.length>0}}">
+    <van-notice-bar color="#1989fa" background="#ecf9ff" left-icon="volume-o" scrollable text="导入成功，下面是重复的数据" />
+  </view>
+
+  <view wx:for="{{repeatedData}}" wx:key="index" wx:for-item="contestant" style="padding-top: 10px;padding-bottom: 10px;">
+    <van-cell-group inset>
+      <van-cell use-label-slot data-index="{{index}}" clickable bind:tap="changeShowDetail">
+        <view slot="title">
+          <text style="font-size:25px;color: black;">第{{contestant.number}}队</text>
+        </view>
+        <view slot="">
+          <text style="font-size:20px;color: black;">{{contestant.name[0]}}/{{contestant.name[1]}}</text>
+        </view>
+      </van-cell>
+      <van-cell title="场分" value="{{contestant.total_points}}"></van-cell>
+      <van-cell title="胜轮次" value="{{contestant.win_round_points}}"></van-cell>
+      <van-cell title="级差分" value="{{contestant.level_different_points}}"></van-cell>
+      <van-cell title="升级数" value="{{contestant.promotion_points}}"></van-cell>
+      <van-cell title="对手级差分" value="{{contestant.opponent_level_different_points}}"></van-cell>
+    </van-cell-group>
+  </view>
+</view>

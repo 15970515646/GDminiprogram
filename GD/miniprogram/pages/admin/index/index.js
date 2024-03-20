@@ -5,17 +5,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-
-    players: [],
-    playerIndex: 0,
     active: 0,
-    leaderboard :[
-      { id: 1, name: '小明', points: 100, age: 25, gender: '男' },
-      { id: 2, name: '小红', points: 90, age: 22, gender: '女' },
-      { id: 3, name: '小刚', points: 80, age: 27, gender: '男' },
-    ],
+    contests: [],
   },
-
+  goToContestDetail(event) {
+    const index = event.currentTarget.dataset.index;
+    const contest = this.data.contests[index];
+    console.log(contest);
+    wx.navigateTo({
+      url: '../contest-detail/contest-detail?contestNumber=' + contest.number,
+    })
+  },
   onChange(event) {
     // event.detail 的值为当前选中项的索引
     this.setData({
@@ -32,9 +32,66 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.queryContests(0)
+  },
+  setStatus(){
+    let contests=this.data.contests;
+    contests.forEach(contest => {
+      if(contest.current_round===0){
+        contest.status="报名中";
+      }
+      else{
+        contest.status="进行中";
+      }
+    });
+    this.setData({
+      contests:contests,
+    });
 
   },
+  sortContestsByDate() {
+    let contests = this.data.contests;
+    contests.sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateB - dateA;
+    });
+    this.setData({
+      contests: contests,
+    });
+  },
+  queryContests: function (skip) {
+    const db = wx.cloud.database();
+    const collection = db.collection('contest'); // 替换为实际的集合名称
 
+    // 每页显示的条数
+    const pageSize = 20;
+
+    // 查询数据
+    collection.skip(skip).limit(pageSize).get({
+      success: (res) => {
+        const data = res.data;
+
+        if (data.length > 0) {
+          console.log(`第 ${skip / pageSize + 1} 页数据:`, data);
+          // 处理当前页的数据
+          // 将当前页的数据追加到数组中
+          this.setData({
+            contests: this.data.contests.concat(data),
+          });
+          // 继续查询下一页数据
+          this.queryContests(skip + pageSize);
+        } else {
+          console.log('所有数据查询完毕');
+          this.sortContestsByDate();
+          this.setStatus();
+        }
+      },
+      fail: (err) => {
+        console.error('查询失败', err);
+      }
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

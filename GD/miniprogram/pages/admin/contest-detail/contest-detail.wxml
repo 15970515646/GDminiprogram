@@ -1,0 +1,55 @@
+<van-cell-group inset>
+  <van-cell>
+    <view slot="title">
+      <text style="font-size: 20px;color: black;">比赛编号：</text>
+    </view>
+    <view slot="">
+      <text style="font-size: 16px;color: blue;text-align: center;">{{contest.number}}</text>
+    </view>
+  </van-cell>
+  <van-cell>
+    <view slot="title">
+      <text style="font-size: 20px;color: black;">比赛名称：</text>
+    </view>
+    <view slot="">
+      <text style="font-size: 16px;color: blue;text-align: center;">{{contest.title}}</text>
+    </view>
+  </van-cell>
+  <van-cell>
+    <view slot="title">
+      <text style="font-size: 20px;color: black;">比赛举办方：</text>
+    </view>
+    <view slot="">
+      <text style="font-size: 16px;color: blue;text-align: center;">{{contest.organizer}}</text>
+    </view>
+  </van-cell>
+  <van-cell>
+    <view slot="title">
+      <text style="font-size: 20px;color: black;">比赛时间：</text>
+    </view>
+    <view slot="">
+      <text style="font-size: 16px;color: blue;text-align: center;">{{contest.date}}</text>
+    </view>
+  </van-cell>
+  <van-cell>
+    <view slot="title">
+      <text style="font-size: 20px;color: black;">当前轮次：</text>
+    </view>
+    <view slot="">
+      <text style="font-size: 16px;color: blue;text-align: center;">第{{contest.current_round}}轮</text>
+    </view>
+  </van-cell>
+  <view style="text-align: center;padding-bottom: 20px;">
+    <van-button type="info" size="large" bind:tap="lastRound">上一轮</van-button>
+    <van-button type="info" size="large" bind:tap="nextRound">下一轮</van-button>
+  </view>
+  <view wx:if="{{contestStart}}" style="text-align: center;padding-bottom: 20px;">
+    <van-button type="info" size="large" bind:tap="goToManageContestants">管理参赛选手</van-button>
+    <van-button type="info" size="large" bind:tap="">记录当前轮次比赛结果</van-button>
+    <van-button type="info" size="large" bind:tap="">查看当前轮次比赛座位安排</van-button>
+  </view>
+  <view wx:else="" style="text-align: center;padding-bottom: 20px;">
+    <van-button type="info" size="large" bind:tap="goToAddContestants">导入参赛选手</van-button>
+    <van-button type="info" size="large" bind:tap="goToTempContestants">查看报名名单</van-button>
+  </view>
+</van-cell-group>

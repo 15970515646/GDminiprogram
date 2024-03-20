@@ -29,9 +29,26 @@ Page({
       const dateB = new Date(b.date);
       return dateB - dateA;
     });
+    
     this.setData({
       contests:contests,
-    })
+    });
+
+  },
+  setStatus(){
+    let contests=this.data.contests;
+    contests.forEach(contest => {
+      if(contest.current_round===0){
+        contest.status="报名中";
+      }
+      else{
+        contest.status="进行中";
+      }
+    });
+    this.setData({
+      contests:contests,
+    });
+
   },
   queryContests: function (skip) {
     const db = wx.cloud.database();
@@ -57,6 +74,7 @@ Page({
         } else {
           console.log('所有数据查询完毕');
           this.sortContestsByDate();
+          this.setStatus();
           console.log(this.data.contests);
         }
       },

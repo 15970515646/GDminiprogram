@@ -1,5 +1,6 @@
 .contest-container{
-  margin-bottom: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 .cell-title{
   color: rgb(14, 111, 238);

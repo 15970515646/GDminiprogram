@@ -1,0 +1,14 @@
+.contest-container{
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.cell-title{
+  color: rgb(14, 111, 238);
+  font-size: 16px;
+}
+.slot-footer{
+  display: flex;
+  justify-content: center;
+}
+
+

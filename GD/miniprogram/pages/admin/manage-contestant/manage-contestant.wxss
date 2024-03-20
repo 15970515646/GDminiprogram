@@ -1,0 +1,15 @@
+.button-container {
+  display: flex;
+  justify-content: center;
+  text-align:inherit;
+  height: 154px;
+  width: 100px;
+}
+.input-container{
+  font-size: 20px;
+}
+.info-container{
+  height: 140px;
+  padding-bottom: 5%;
+  padding-top: 5%;
+}

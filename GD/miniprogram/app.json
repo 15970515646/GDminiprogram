@@ -13,7 +13,12 @@
     "van-datetime-picker": "@vant/weapp/datetime-picker/index",
     "van-skeleton": "@vant/weapp/skeleton/index",
     "van-grid": "@vant/weapp/grid/index",
-    "van-grid-item": "@vant/weapp/grid-item/index"
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-grid-item": "@vant/weapp/grid-item/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+    "van-uploader": "@vant/weapp/uploader/index"
    
   },
   "pages": [
@@ -25,7 +30,11 @@
     "pages/admin/index/index",
     "pages/admin/personal-center/personal-center",
     "pages/admin/add-contest/add-contest",
-    "pages/admin/contest-list/contest-list"
+    "pages/admin/contest-list/contest-list",
+    "pages/admin/contest-detail/contest-detail",
+    "pages/admin/add-contestant/add-contestant",
+    "pages/admin/manage-contestant/manage-contestant",
+    "pages/admin/temp-contestant/temp-contestant"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
