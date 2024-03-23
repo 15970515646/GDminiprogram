@@ -5,27 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: ["排名", "队名", "队员", "场分", "胜轮次", "级差分", "升级数", "对手级差分"],
     contestants: [],
     contestNumber: null,
-    contestantNumber: null,
+    showData: false,
   },
-  changeShowDetail(event){
+  changeShowDetail(event) {
     const index = event.currentTarget.dataset.index;
-    let contestants=this.data.contestants;
-    
-    if(contestants[index].showDetail===false){
-      console.log("111");
-      contestants[index].showDetail=true;
+    let contestants = this.data.contestants;
+    if (contestants[index].showDetail === false) {
+      contestants[index].showDetail = true;
     }
-    else{
-      console.log("222");
-      contestants[index].showDetail=false;
+    else {
+      contestants[index].showDetail = false;
     }
     this.setData({
-      contestants:contestants
+      contestants: contestants
     });
-    console.log(this.data.contestants);
   },
   /**
    * 生命周期函数--监听页面加载
@@ -34,7 +29,6 @@ Page({
     console.log(options);
     this.setData({
       contestNumber: options.contestNumber,
-      contestantNumber: options.contestantNumber,
     });
     this.queryContestants(0);
   },
@@ -61,8 +55,10 @@ Page({
           this.queryContestants(skip + pageSize);
         } else {
           console.log('所有数据查询完毕');
-          console.log(this.data.contestants);
           this.filterContestants();
+          this.setData({
+            showData: true,
+          })
         }
       },
       fail: (err) => {
@@ -70,20 +66,41 @@ Page({
       }
     });
   },
-  filterContestants(){
-    console.log("刷选");
-    const contestants=this.data.contestants;
-    let filteredContestants=[];
+  filterContestants() {
+    const contestants = this.data.contestants;
+    let filteredContestants = [];
     contestants.forEach(c => {
-      if(c.contest_number==this.data.contestNumber){
-        c.showDetail=false;
+      if (c.contest_number == this.data.contestNumber) {
+        c.showDetail = false;
         filteredContestants.push(c);
       }
     });
-    this.setData({
-      contestants:filteredContestants
+    //排行，依次按照各个积分比较
+    filteredContestants.sort((a, b) => {
+      // 按照第一个属性进行比较
+      if (a.total_points !== b.total_points) {
+        return b.total_points - a.total_points; // 降序排列
+      }
+      // 如果第一个属性相同，则比较第二个属性
+      if (a.win_round_points !== b.win_round_points) {
+        return b.win_round_points - a.win_round_points; // 降序排列
+      }
+      // 以此类推，比较第三个、第四个和第五个属性
+      if (a.level_different_points !== b.level_different_points) {
+        return b.level_different_points - a.level_different_points; // 降序排列
+      }
+      if (a.promotion_points !== b.promotion_points) {
+        return b.promotion_points - a.promotion_points; // 降序排列
+      }
+      if (a.opponent_level_different_points !== b.opponent_level_different_points) {
+        return b.opponent_level_different_points - a.opponent_level_different_points; // 降序排列
+      }
+      // 如果五个属性都相同，则返回 0，表示相等并列
+      return 0;
     });
-    console.log("筛选后：",this.data.contestants);
+    this.setData({
+      contestants: filteredContestants
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

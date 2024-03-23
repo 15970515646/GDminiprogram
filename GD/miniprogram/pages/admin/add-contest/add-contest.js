@@ -34,7 +34,6 @@ Page({
       selectDate: formattedDate,
       showTimePicker: false,
     });
-    console.log(this.data.selectDate);
   },
   onCancel() {
     this.setData({
@@ -67,7 +66,6 @@ Page({
               number: parseInt(this.data.number, 10)
             }).get({
               success: (res) => {
-
                 if (res.data.length > 0) {
                   wx.showToast({
                     title: '编号重复',
@@ -81,7 +79,7 @@ Page({
                       number: parseInt(this.data.number, 10),
                       title: this.data.title,
                       date: this.data.selectDate,
-                      organizer: this.data.organizer
+                      organizer: this.data.organizer,current_round:0,
                     },
                     success: (res) => {
                       wx.showToast({
@@ -89,12 +87,11 @@ Page({
                         icon: 'success',
                         duration: 3000,
                         success: (res) => {
-                          wx.navigateTo({
-                            url: '../personal-center/personal-center',
+                          wx.reLaunch({
+                            url: '../index/index',
                           })
                         }
                       })
-
                     }
                   })
                 }

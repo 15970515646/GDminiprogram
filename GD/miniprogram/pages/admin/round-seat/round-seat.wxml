@@ -1,0 +1,33 @@
+<view wx:for="{{seats}}" wx:key="index" wx:for-item="seat" style="padding-top: 10px;padding-bottom: 10px;">
+  <van-cell-group inset>
+    <van-grid column-num="3">
+      <van-grid-item use-slot>
+        <text style="color: black;height: 30px;"></text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <text style="color: black;height: 30px;">北{{seat.north_south_contestant_number}}</text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <text style="color: black;height: 30px;"></text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <text style="color: black;height: 30px;">西{{seat.west_east_contestant_number}}</text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <text style="color: red;height: 30px;">第{{seat.table}}桌</text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <text style="color: black;height: 30px;">东{{seat.west_east_contestant_number}}</text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <text style="color: black;height: 30px;"></text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <text style="color: black;height: 30px;">南{{seat.north_south_contestant_number}}</text>
+      </van-grid-item>
+      <van-grid-item use-slot>
+        <text style="color: black;height: 30px;"></text>
+      </van-grid-item>
+    </van-grid>
+  </van-cell-group>
+</view>

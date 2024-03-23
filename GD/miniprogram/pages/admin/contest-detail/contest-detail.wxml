@@ -43,13 +43,18 @@
     <van-button type="info" size="large" bind:tap="lastRound">上一轮</van-button>
     <van-button type="info" size="large" bind:tap="nextRound">下一轮</van-button>
   </view>
-  <view wx:if="{{contestStart}}" style="text-align: center;padding-bottom: 20px;">
+  <view style="text-align: center;padding-bottom: 20px;">
     <van-button type="info" size="large" bind:tap="goToManageContestants">管理参赛选手</van-button>
-    <van-button type="info" size="large" bind:tap="">记录当前轮次比赛结果</van-button>
-    <van-button type="info" size="large" bind:tap="">查看当前轮次比赛座位安排</van-button>
+    <van-button type="info" size="large" bind:tap="goToLeaderBoard">查看排行榜</van-button>
+  </view>
+  <view wx:if="{{contestStart}}" style="text-align: center;padding-bottom: 20px;">
+    <van-button type="info" size="large" bind:tap="goToRoundResult">记录比赛结果</van-button>
+    <van-button type="info" size="large" bind:tap="goToRoundSeat">查看比赛座位安排</van-button>
+    <van-button type="info" size="large" bind:tap="">计算当前轮分数</van-button>
   </view>
   <view wx:else="" style="text-align: center;padding-bottom: 20px;">
-    <van-button type="info" size="large" bind:tap="goToAddContestants">导入参赛选手</van-button>
     <van-button type="info" size="large" bind:tap="goToTempContestants">查看报名名单</van-button>
+    <van-button type="info" size="large" bind:tap="goToAddContestants">导入参赛选手</van-button>
+    
   </view>
 </van-cell-group>

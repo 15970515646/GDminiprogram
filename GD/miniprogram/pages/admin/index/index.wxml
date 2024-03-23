@@ -1,19 +1,26 @@
-<view wx:for="{{contests}}" wx:key="index" wx:for-item="contest">
-  <view class="contest-container">
-    <van-cell-group inset>
-      <van-panel>
-        <view slot="header">
-          <van-cell title="{{contest.number}}:{{contest.title}}" value="{{contest.status}}" label="比赛时间:{{contest.date}}" title-class="cell-title" value-class="cell-value"></van-cell>
-        </view>
-        <view slot="footer" class="slot-footer">
-          <van-button type="info" size="small" data-index="{{index}}" bind:tap="goToContestDetail">查看详情</van-button>
-        </view>
-      </van-panel>
-    </van-cell-group>
-  </view>
-</view>
 
-<van-tabbar active="{{ active }}" bind:change="onChange">
+  <view wx:if="{{showContests}}" style="padding-bottom: 100px;">
+    <view wx:for="{{contests}}" wx:key="index" wx:for-item="contest">
+      <view class="contest-container">
+        <van-cell-group inset>
+          <van-panel>
+            <view slot="header">
+              <van-cell title="{{contest.number}}:{{contest.title}}" value="{{contest.status}}" label="比赛时间:{{contest.date}}" title-class="cell-title" value-class="cell-value"></van-cell>
+            </view>
+            <view slot="footer" class="slot-footer">
+              <van-button type="info" size="small" data-index="{{index}}" bind:tap="goToContestDetail">查看详情</van-button>
+            </view>
+          </van-panel>
+        </van-cell-group>
+      </view>
+    </view>
+  </view>
+
+
+
+
+
+<van-tabbar active="{{ active }}" placeholder bind:change="onChange">
   <van-tabbar-item icon="home-o">首页</van-tabbar-item>
   <van-tabbar-item icon="setting-o">设置</van-tabbar-item>
 </van-tabbar>

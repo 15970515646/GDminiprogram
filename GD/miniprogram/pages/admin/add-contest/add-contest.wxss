@@ -16,6 +16,5 @@
   color: red;
 }
 .button {
-  
   text-align: center; /* 水平居中 */
 }

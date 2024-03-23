@@ -14,12 +14,12 @@
     <van-cell title="新建比赛" value="点击跳转" title-style="font-size: 16px;" is-link clickalbe bindtap="goToAddContest" />
   </van-cell-group>
 </view>
-<view class="setting-container">
+<!-- <view class="setting-container">
   <van-cell-group inset>
     <van-cell title="查看比赛列表" value="点击跳转" title-style="font-size: 16px;" is-link clickalbe bindtap="goToContestList" />
   </van-cell-group>
-</view>
-<view class="setting-container">
+</view> -->
+<!-- <view class="setting-container">
   <van-cell-group inset>
     <van-cell title="比赛倒计时" value="点击跳转" title-style="font-size: 16px;" is-link clickalbe bindtap="goToCountdown" />
   </van-cell-group>
@@ -28,7 +28,7 @@
   <van-cell-group inset>
     <van-cell title="查看判罚记录" value="点击跳转" title-style="font-size: 16px;" is-link clickalbe bindtap="goToPenaltyRecord" />
   </van-cell-group>
-</view>
+</view> -->
 
 
 <van-tabbar active="{{ active }}" bind:change="onChange">

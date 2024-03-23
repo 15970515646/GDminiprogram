@@ -18,14 +18,15 @@
     "van-row": "@vant/weapp/row/index",
     "van-col": "@vant/weapp/col/index",
     "van-swipe-cell": "@vant/weapp/swipe-cell/index",
-    "van-uploader": "@vant/weapp/uploader/index"
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-picker": "@vant/weapp/picker/index"
    
   },
   "pages": [
     "pages/index/index",
     "pages/contestant/index/index",
     "pages/contestant/contest-detail/contest-detail",
-    "pages/contestant/leaderboard/leaderboard",
+    "pages/leaderboard/leaderboard",
     "pages/contestant/records/records",
     "pages/admin/index/index",
     "pages/admin/personal-center/personal-center",
@@ -34,7 +35,9 @@
     "pages/admin/contest-detail/contest-detail",
     "pages/admin/add-contestant/add-contestant",
     "pages/admin/manage-contestant/manage-contestant",
-    "pages/admin/temp-contestant/temp-contestant"
+    "pages/admin/temp-contestant/temp-contestant",
+    "pages/admin/round-seat/round-seat",
+    "pages/admin/round-result/round-result"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

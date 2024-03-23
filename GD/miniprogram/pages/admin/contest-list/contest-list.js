@@ -1,18 +1,16 @@
-// pages/admin/contest-list/contest-list.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    contests:[],
+    contests: [],
   },
-  goToContestDetail(event){
+  goToContestDetail(event) {
     const index = event.currentTarget.dataset.index;
-    const contest=this.data.contests[index];
-    console.log(contest);
+    const contest = this.data.contests[index];
     wx.navigateTo({
-      url: '../contest-detail/contest-detail?contestNumber='+contest.number,
+      url: '../contest-detail/contest-detail?contestNumber=' + contest.number,
     })
   },
 
@@ -23,14 +21,14 @@ Page({
     this.queryContests(0);
   },
   sortContestsByDate() {
-    let contests=this.data.contests;
+    let contests = this.data.contests;
     contests.sort((a, b) => {
       const dateA = new Date(a.date);
       const dateB = new Date(b.date);
       return dateB - dateA;
     });
     this.setData({
-      contests:contests,
+      contests: contests,
     });
   },
   queryContests: function (skip) {

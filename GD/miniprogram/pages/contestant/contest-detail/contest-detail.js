@@ -206,7 +206,6 @@ Page({
   },
   //查询参赛信息
   onSearchContestant(event) {
-    console.log(this.data.inputName);
     if (this.data.inputName === null) {
       wx.showToast({
         title: "姓名不能为空",
@@ -232,7 +231,6 @@ Page({
             isContestant: true,
             contestant: res.data[0],
           });
-          console.log(this.data.contestant);
         }
         else {
           wx.showToast({
@@ -244,21 +242,18 @@ Page({
             isContestant: false,
           });
         }
-
       }
     })
-
   },
   onInputChange(e) {
     this.setData({
       inputName: e.detail,
     });
-    console.log(this.data.inputName);
   },
   //查看排行榜
   goToLeaderboard() {
     wx.navigateTo({
-      url: '../leaderboard/leaderboard?contestNumber=' + this.data.contestNumber + "&contestantNumber=" + this.data.contestant.number,
+      url: '../../leaderboard/leaderboard?contestNumber=' + this.data.contestNumber,
     })
   },
   //查看每轮得分

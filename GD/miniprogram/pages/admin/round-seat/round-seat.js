@@ -1,37 +1,28 @@
-// pages/admin/personal-center/personal-center.js
+// pages/admin/round-seat/round-seat.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    active: 1,
+    seats: []
   },
 
-  onChange(event) {
-    // event.detail 的值为当前选中项的索引
-    this.setData({ active: event.detail });
-    if(!this.data.active){
-      wx.navigateBack({
-        url: '../index/index',
-      })
-    }
-  },
-  goToAddContest(){
-    wx.navigateTo({
-      url: '../add-contest/add-contest',
-    })
-  },
-  goToContestList(){
-    wx.navigateTo({
-      url: '../contest-list/contest-list',
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    const db = wx.cloud.database();
+    db.collection("rounds").where({
+      round: parseInt(options.roundNumber, 10),
+      contest_number: parseInt(options.contestNumber, 10)
+    }).get({
+      success: (res) => {
+        this.setData({
+          seats: res.data
+        });
+      }
+    })
   },
 
   /**

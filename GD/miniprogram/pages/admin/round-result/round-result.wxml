@@ -1,4 +1,4 @@
-<view wx:if="{{showData}}">
+<view wx:if="{{showRounds}}">
   <view wx:for="{{rounds}}" wx:key="index" wx:for-item="round" style="padding-top: 10px;padding-bottom: 10px;">
     <van-cell-group inset>
       <text style="display: flex;justify-content: center;font-size: 20px;">第{{round.round}}轮 第{{round.table}}桌</text>
@@ -30,41 +30,20 @@
             <text style="color: red;">打几</text>
           </van-grid-item>
           <van-grid-item use-slot>
-            <text style="color: red;">{{round.north_south_card}}</text>
+            <text style="color: red;" bind:tap="onNSShowPopup" data-index="{{index}}">{{round.north_south_card}}</text>
           </van-grid-item>
           <van-grid-item use-slot>
-            <text style="color: red;">{{round.west_east_card}}</text>
-          </van-grid-item>
-        </view>
-        <view>
-          <van-grid-item use-slot>
-            <text style="color: red;">得分</text>
-          </van-grid-item>
-          <van-grid-item use-slot>
-            <text style="color: red;">{{round.north_south_score}}</text>
-          </van-grid-item>
-          <van-grid-item use-slot>
-            <text style="color: red;">{{round.west_east_score}}</text>
+            <text style="color: red;" bind:tap="onWEShowPopup" data-index="{{index}}">{{round.west_east_card}}</text>
           </van-grid-item>
         </view>
       </van-grid>
     </van-cell-group>
   </view>
+  <view style="display: flex;justify-content: center;">
+    <van-button type="primary" size="large" bind:tap="submit">提交</van-button>
+  </view>
 </view>
 
-<!-- <view wx:for="{{rounds}}" wx:key="index" wx:for-item="round" style="padding-top: 10px;padding-bottom: 10px;">
-  <van-cell-group inset>
-    <van-row>
-      <van-col span="4">
-        <text style="color: black;height: 40px;">姓名</text>
-      </van-col>
-      <van-col span="10">
-        <text style="color: black;height: 40px;">{{round.north_south_contestant_name[0]}}/{{round.north_south_contestant_name[1]}}</text>
-      </van-col>
-      <van-col span="10">
-        <text style="color: black;height: 40px;">{{round.west_east_contestant_name[0]}}/{{round.west_east_contestant_name[1]}}</text>
-      </van-col>
-    </van-row>
-  </van-cell-group>
-
-</view> -->
+<van-popup show="{{NSShowPicker||WEShowPicker}}" bind:close="onClosePopup" position="bottom" custom-style="height: auto;" round>
+  <van-picker show-toolbar title="打几" columns="{{ pickerArray }}" bind:cancel="onCancel" bind:confirm="onConfirm" />
+</van-popup>

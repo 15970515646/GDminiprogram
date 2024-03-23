@@ -22,7 +22,6 @@ exports.main = async (event, context) => {
         });
       } else {
         areadyInDBData.push(data);
-        console.log(`数据 ${data} 已存在，无需插入`);
       }
     }
 

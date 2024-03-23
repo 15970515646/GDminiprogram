@@ -1,4 +1,3 @@
-// pages/admin/index/index.js
 Page({
 
   /**
@@ -7,11 +6,11 @@ Page({
   data: {
     active: 0,
     contests: [],
+    showContests:false,
   },
   goToContestDetail(event) {
     const index = event.currentTarget.dataset.index;
     const contest = this.data.contests[index];
-    console.log(contest);
     wx.navigateTo({
       url: '../contest-detail/contest-detail?contestNumber=' + contest.number,
     })
@@ -85,6 +84,9 @@ Page({
           console.log('所有数据查询完毕');
           this.sortContestsByDate();
           this.setStatus();
+          this.setData({
+            showContests:true,
+          })
         }
       },
       fail: (err) => {

@@ -8,6 +8,7 @@ Page({
     contestNumber:"",
     tempContestants:[],
     contest:null,
+    showData:false,
   },
   saveFile() {
     let sheet = [];
@@ -20,7 +21,6 @@ Page({
       });
       sheet.push(data);
     });
-    
     // XLSX插件使用
     var ws = XLSX.utils.aoa_to_sheet(sheet);
     var wb = XLSX.utils.book_new();
@@ -32,8 +32,6 @@ Page({
     let contestTitle=this.data.contest.title;
     let fileName = contestTitle.replace(/"/g, '');
     let filePath = `${wx.env.USER_DATA_PATH}/` + fileName+'报名人员名单.xlsx';
-
-
     // 写文件
     const fs = wx.getFileSystemManager()
     fs.writeFile({
@@ -68,10 +66,8 @@ Page({
             }
           })
         }
-
       },
       fail(res) {
-
         console.error(res)
         if (res.errMsg.indexOf('locked')) {
           wx.showModal({
@@ -79,7 +75,6 @@ Page({
             content: '文档已打开，请先关闭',
           })
         }
-
       }
     });
   },
@@ -106,10 +101,8 @@ Page({
   queryTempContestants: function (skip) {
     const db = wx.cloud.database();
     const collection = db.collection('temp_contestant'); // 替换为实际的集合名称
-
     // 每页显示的条数
     const pageSize = 20;
-
     // 查询数据
     collection.skip(skip).limit(pageSize).get({
       success: (res) => {
@@ -125,7 +118,10 @@ Page({
           this.queryTempContestants(skip + pageSize);
         } else {
           console.log('所有数据查询完毕');
-          this.filterContestants();
+          this.filterTempContestants();
+          this.setData({
+            showData:true,
+          });
         }
       },
       fail: (err) => {
@@ -133,7 +129,7 @@ Page({
       }
     });
   },
-  filterContestants() {
+  filterTempContestants() {
     const tempContestants = this.data.tempContestants;
     let filteredContestants = [];
     tempContestants.forEach(c => {
@@ -144,7 +140,6 @@ Page({
     this.setData({
       tempContestants: filteredContestants
     });
-    console.log("筛选后：", this.data.tempContestants);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -1,4 +1,3 @@
-// pages/contestant/index/index.js
 Page({
 
   /**
@@ -6,6 +5,7 @@ Page({
    */
   data: {
     contests: [],
+    showContests:false,
   },
   joinContest(event) {
     const index = event.currentTarget.dataset.index;
@@ -29,11 +29,9 @@ Page({
       const dateB = new Date(b.date);
       return dateB - dateA;
     });
-    
     this.setData({
       contests:contests,
     });
-
   },
   setStatus(){
     let contests=this.data.contests;
@@ -75,7 +73,9 @@ Page({
           console.log('所有数据查询完毕');
           this.sortContestsByDate();
           this.setStatus();
-          console.log(this.data.contests);
+          this.setData({
+            showContests:true,
+          })
         }
       },
       fail: (err) => {

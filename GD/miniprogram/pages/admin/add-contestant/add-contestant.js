@@ -35,16 +35,7 @@ Page({
         } else {
           wx.showModal({
             title: '格式错误',
-            content: '请选择xlsx后缀名的文件',
-            complete: (res) => {
-              if (res.cancel) {
-
-              }
-
-              if (res.confirm) {
-
-              }
-            }
+            content: '请选择xlsx后缀名的文件',            
           })
         }
       },
@@ -72,7 +63,6 @@ Page({
         this.setData({
           excelData: arrayData
         });
-        console.log(arrayData);
         let ready = this.checkDataAllReady()
         if (ready) {
           this.convertToContestant();
@@ -86,16 +76,7 @@ Page({
           });
           wx.showModal({
             title: '数据缺失',
-            content: '请检查上传的文件数据是否存在空数据',
-            complete: (res) => {
-              if (res.cancel) {
-
-              }
-
-              if (res.confirm) {
-
-              }
-            }
+            content: '请检查上传的文件数据是否存在空数据',           
           })
         }
       },
@@ -154,7 +135,6 @@ Page({
     this.setData({
       contestants: temp
     });
-    console.log(this.data.contestants);
   },
   //插入数据库
   onSubmit() {
@@ -178,7 +158,6 @@ Page({
         data: this.data.contestants
       },
       success: res => {
-        console.log('操作成功', res.result);
         this.setData({
           repeatedData:res.result.data,
           showRepeatedData:true,
@@ -187,17 +166,7 @@ Page({
         wx.showModal({
           title: '导入成功',
           content: '已成功导入'+(this.data.contestants.length-this.data.repeatedData.length)+'/'+this.data.contestants.length+"队，如有重复队伍将展示在页面上",
-          complete: (res) => {
-            if (res.cancel) {
-              
-            }
-        
-            if (res.confirm) {
-              
-            }
-          }
         })
-        // 在这里处理操作成功的情况
       },
       fail: err => {
         console.error('操作失败', err);

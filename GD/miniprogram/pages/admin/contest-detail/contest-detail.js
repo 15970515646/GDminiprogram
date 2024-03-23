@@ -1,4 +1,3 @@
-// pages/admin/contest-detail/contest-detail.js
 Page({
 
   /**
@@ -47,7 +46,34 @@ Page({
               this.setData({
                 contestStart:true
               });
-              console.log(this.data.contestStart);
+              wx.cloud.callFunction({
+                name:"groupByRound",
+                data:{
+                  contest_number:this.data.contestNumber,
+                  current_round:this.data.contest.current_round
+                },
+                success:(res)=>{
+                  if(res.result.data.code==1){
+                    wx.showToast({
+                    title: res.result.data.msg,
+                  });
+                  }
+                  else{
+                    wx.showModal({
+                      title: '分组失败',
+                      content: res.result.data.msg,
+                      complete: (res) => {
+                        if (res.cancel) {
+                          
+                        }
+                        if (res.confirm) {
+                          
+                        }
+                      }
+                    })
+                  }
+                }
+              })
             }
           })
         }
@@ -74,13 +100,24 @@ Page({
                 current_round:this.data.contest.current_round
               },
               success: (res) => {
-                //TODO：分组
+                //TODO：清除当前轮次的分组数据
                 if(this.data.contest.current_round==0){
                   this.setData({
                     contestStart:false
-                  })
+                  });
                 }
-                console.log(this.data.contestStart);
+                wx.cloud.callFunction({
+                  name:"clearRound",
+                  data:{
+                    contest_number:this.data.contestNumber,
+                    clear_round:this.data.contest.current_round+1
+                  },
+                  success:(res)=>{
+                    wx.showToast({
+                      title: '回退成功',
+                    });
+                  }
+                })
               }
             })
           }
@@ -109,6 +146,21 @@ Page({
   goToTempContestants(){
     wx.navigateTo({
       url: '../temp-contestant/temp-contestant?contestNumber='+this.data.contestNumber,
+    })
+  },
+  goToRoundSeat(){
+    wx.navigateTo({
+      url: '../round-seat/round-seat?contestNumber='+this.data.contestNumber+"&roundNumber="+this.data.contest.current_round,
+    })
+  },
+  goToRoundResult(){
+    wx.navigateTo({
+      url: '../round-result/round-result?contestNumber='+this.data.contestNumber+"&roundNumber="+this.data.contest.current_round,
+    })
+  },
+  goToLeaderBoard(){
+    wx.navigateTo({
+      url: '../../leaderboard/leaderboard?contestNumber='+this.data.contestNumber,
     })
   },
   /**
